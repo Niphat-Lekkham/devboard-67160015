@@ -6,22 +6,22 @@ const POSTS = [
   {
     id: 1,
     title: "React คืออะไร?",
-    body: "React เป็น library สำหรับสร้าง UI",
+    body: "React เป็น library สำหรับสร้าง UI ของเว็บไซต์ ทำให้โค้ดอ่านง่าย ดูแลรักษาง่าย และสามารถนำกลับมาใช้ซ้ำได้",
   },
   {
     id: 2,
     title: "ทำไมต้องใช้ Components?",
-    body: "Components ช่วยให้ UI reuse ได้",
+    body: "Components ช่วยให้ UI reuse ได้ทำให้โค้ดเป็นระเบียบมากขึ้น ลดความซ้ำซ้อน และทำให้การพัฒนาและแก้ไขโปรแกรมทำได้ง่ายขึ้น",
   },
   {
     id: 3,
     title: "JSX คืออะไร?",
-    body: "JSX ทำให้เขียน HTML ใน JavaScript ได้",
+    body: "JSX ทำให้เขียน HTML ใน JavaScript ได้ ทำให้นักพัฒนาสามารถออกแบบโครงสร้าง UI ได้ง่ายขึ้น",
   },
   {
     id: 4,
     title: "Props ทำงานอย่างไร?",
-    body: "Props คือ argument ของ component",
+    body: "Props คือ argument ของ component สามารถแสดงผลข้อมูลที่แตกต่างกันได้ตามค่าที่ถูกส่งเข้ามา",
   },
 ];
 

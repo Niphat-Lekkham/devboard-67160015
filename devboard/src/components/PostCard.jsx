@@ -10,7 +10,7 @@ function PostCard({ title, body }) {
       }}
     >
       <h3 style={{ color: "#1e40af" }}>{title}</h3>
-      <p>{body}</p>
+      <p style={{color: "#1e40af"}}>{body}</p>
     </div>
   );
 }
