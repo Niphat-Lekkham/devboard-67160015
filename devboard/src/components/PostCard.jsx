@@ -1,4 +1,4 @@
-function PostCard({ title, body }) {
+function PostCard({ title, body, isFavorite, onToggleFavorite }) {
   return (
     <div
       style={{
@@ -11,6 +11,20 @@ function PostCard({ title, body }) {
     >
       <h3 style={{ color: "#1e40af" }}>{title}</h3>
       <p style={{color: "#1e40af"}}>{body}</p>
+      <button
+        onClick={onToggleFavorite}
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          fontSize: "1.2rem",
+          padding: "0.25rem 0.5rem",
+          borderRadius: "4px",
+          color: isFavorite ? "#e53e3e" : "#a0aec0",
+        }}
+      >
+        {isFavorite ? "❤️ ถูกใจแล้ว" : "🤍 ถูกใจ"}
+      </button>
     </div>
   );
 }
