@@ -1,12 +1,42 @@
 import PostCard from "./PostCard";
 import PostCount from "./PostCount";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
-function PostList({ posts, favorites, onToggleFavorite }) {
+function PostList({ favorites, onToggleFavorite }) {
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+        if (!res.ok) throw new Error("ดึงข้อมูลไม่สำเร็จ");
+
+        const data = await res.json();
+        setPosts(data.slice(0, 20));
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPosts();
+  }, []);
+
+  // ✅ keep only this one
   const filtered = posts.filter((post) =>
-    post.title.toLowerCase().includes(search.toLowerCase()),
+    post.title.toLowerCase().includes(search.toLowerCase())
   );
+
+  if (loading) return <LoadingSpinner />;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <div>
@@ -27,32 +57,18 @@ function PostList({ posts, favorites, onToggleFavorite }) {
         placeholder="ค้นหาโพสต์..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{
-          width: "100%",
-          padding: "0.5rem 0.75rem",
-          border: "1px solid #cbd5e0",
-          borderRadius: "6px",
-          fontSize: "1rem",
-          marginBottom: "1rem",
-          boxSizing: "border-box",
-        }}
       />
-      {filtered.length === 0 && (
-        <p style={{ color: "#718096", textAlign: "center", padding: "2rem" }}>
-          ไม่พบโพสต์ที่ค้นหา
-        </p>
-      )}
+
+      {filtered.length === 0 && <p>ไม่พบโพสต์ที่ค้นหา</p>}
 
       {filtered.map((post) => (
         <PostCard
           key={post.id}
-          title={post.title}
-          body={post.body}
+          post={post}   // ✅ FIX HERE
           isFavorite={favorites.includes(post.id)}
           onToggleFavorite={() => onToggleFavorite(post.id)}
         />
       ))}
-
     </div>
   );
 }
