@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import PostCard from "./PostCard";
 import PostCount from "./PostCount";
 import LoadingSpinner from "./LoadingSpinner";
+import { useFavorites } from "../context/FavoritesContext";
 
-function PostList({ favorites, onToggleFavorite }) {
+function PostList() {
+  const { favorites, toggleFavorite } = useFavorites();
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -97,7 +99,7 @@ function PostList({ favorites, onToggleFavorite }) {
           key={post.id}
           post={post}
           isFavorite={favorites.includes(post.id)}
-          onToggleFavorite={() => onToggleFavorite(post.id)}
+          onToggleFavorite={() => toggleFavorite(post.id)}
         />
       ))}
     </div>
