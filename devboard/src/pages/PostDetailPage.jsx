@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useFavorites } from "../context/FavoritesContext";
+import { useFavorites } from "../components/context/FavoritesContext";
 import CommentList from "../components/CommentList";
 import LoadingSpinner from "../components/LoadingSpinner";
 
