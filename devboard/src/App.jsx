@@ -12,7 +12,7 @@ function App() {
     <FavoritesProvider>
       <BrowserRouter>
         <Navbar />
-
+        
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/posts/:id" element={<PostDetailPage />} />

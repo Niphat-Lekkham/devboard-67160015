@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-
 const FavoritesContext = createContext();
 
 export function FavoritesProvider({ children }) {
@@ -9,7 +8,7 @@ export function FavoritesProvider({ children }) {
     setFavorites((prev) =>
       prev.includes(postId)
         ? prev.filter((id) => id !== postId)
-        : [...prev, postId]
+        : [...prev, postId],
     );
   }
 
@@ -20,6 +19,7 @@ export function FavoritesProvider({ children }) {
   );
 }
 
+// 3. Custom hook สำหรับใช้งาน context ง่าย ๆ
 export function useFavorites() {
   return useContext(FavoritesContext);
 }

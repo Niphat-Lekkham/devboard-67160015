@@ -4,8 +4,8 @@ import { useFavorites } from "../context/FavoritesContext";
 import CommentList from "./CommentList";
 
 function PostCard({ post }) {
-  const { favorites, toggleFavorite } = useFavorites(); // ✅ เพิ่ม
-  const isFavorite = favorites.includes(post.id);       // ✅ เพิ่ม
+  const { favorites, toggleFavorite } = useFavorites(); 
+  const isFavorite = favorites.includes(post.id);       
   const [showComments, setShowComments] = useState(false);
 
   return (
@@ -31,16 +31,33 @@ function PostCard({ post }) {
         {post.body}
       </p>
 
-      <div style={{ display: "flex", gap: "0.5rem" }}>
-
-        {/* ❤️ ปุ่มถูกใจ */}
-        <button onClick={() => toggleFavorite(post.id)}>
-          {isFavorite ? "❤️ ถูกใจแล้ว" : "🤍 ถูกใจ"}
+       <div style={{ display: "flex", gap: "0.5rem" }}>
+        <button
+          onClick={() => toggleFavorite(post.id)}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "1rem",
+            color: isFavorite ? "#e53e3e" : "#a0aec0",
+          }}
+        >
+          {isFavorite ? "❤️" : "🤍"}
         </button>
 
-        {/* 💬 ปุ่มคอมเมนต์ */}
-        <button onClick={() => setShowComments(prev => !prev)}>
-          {showComments ? "▲ ซ่อน" : "▼ ดูความคิดเห็น"}
+        <button
+          onClick={() => setShowComments((prev) => !prev)}
+          style={{
+            background: "none",
+            border: "1px solid #e2e8f0",
+            cursor: "pointer",
+            fontSize: "0.9rem",
+            padding: "0.25rem 0.75rem",
+            borderRadius: "4px",
+            color: "#4a5568",
+          }}
+        >
+          {showComments ? "▲ ซ่อน" : "▼ ความคิดเห็น"}
         </button>
       </div>
 
